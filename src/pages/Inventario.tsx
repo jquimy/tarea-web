@@ -1,16 +1,39 @@
-import { equiposIniciales } from "../data/equiposIniciales";
-import Encabezado from "../components/Encabezado";
+import { useState } from "react";
+import type { Equipo } from "../types";
+import { CATEGORIAS } from "../constants";
 import ListaEquipos from "../components/ListaEquipos";
 
-export default function Inventario() {
-  const handlePrestar = (id: number) => {
-    console.log("Prestar equipo", id); // se implementa en la Parte 2
-  };
+interface InventarioProps {
+  equipos: Equipo[];
+  onPrestar: (id: number) => void;
+}
+
+export default function Inventario({ equipos, onPrestar }: InventarioProps) {
+  const [categoria, setCategoria] = useState("");
+  const [busqueda, setBusqueda] = useState("");
+
+  const filtrados = equipos.filter(
+    (e) =>
+      (categoria === "" || e.categoria === categoria) &&
+      e.nombre.toLowerCase().includes(busqueda.toLowerCase())
+  );
 
   return (
     <>
-      <Encabezado equipos={equiposIniciales} />
-      <ListaEquipos equipos={equiposIniciales} onPrestar={handlePrestar} />
+      <div className="filtros">
+        <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+          <option value="">Todas las categorías</option>
+          {CATEGORIAS.map((c) => (
+            <option key={c} value={c}>{c}</option>
+          ))}
+        </select>
+        <input
+          placeholder="Buscar por nombre..."
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+        />
+      </div>
+      <ListaEquipos equipos={filtrados} onPrestar={onPrestar} />
     </>
   );
 }

@@ -1,75 +1,81 @@
-# React + TypeScript + Vite
+# Préstamos Lab — 0902-23-4187
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web para controlar el préstamo de equipos del laboratorio de cómputo: qué equipo está prestado, a quién y hasta cuándo.
 
-Currently, two official plugins are available:
+**Variante asignada (carné termina en 7):**
+- Categorías: Monitor, Teclado, Mouse
+- Máximo de días de préstamo: 5
+- Regla adicional: mostrar en el Encabezado cuántos préstamos están vencidos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tecnologías
 
-## React Compiler
+- React 18+ con TypeScript (Vite)
+- json-server 0.17.4 como API REST
+- CSS propio
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Requisitos
 
-## Expanding the ESLint configuration
+- Node.js 18 o superior
+- npm
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Instalación
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone https://github.com/jquimy/tarea-web.git
+cd prestamos-lab
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Configuración
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Crea un archivo `.env` en la raíz del proyecto con:
 
 ```
+VITE_API_URL=http://localhost:3001
+```
+
+(Puedes copiar `.env.example`.)
+
+## Ejecución
+
+Se necesitan dos terminales abiertas al mismo tiempo.
+
+**Terminal 1: levantar la API**
+
+```bash
+npm run api
+```
+
+La API queda en `http://localhost:3001` (por ejemplo, `/equipos` y `/prestamos`).
+
+**Terminal 2: levantar el frontend**
+
+```bash
+npm run dev
+```
+
+La aplicación queda en `http://localhost:5173`.
+
+## Estructura del proyecto
+
+```
+src/
+  components/   componentes de presentación
+  pages/        vistas principales
+  services/     funciones que llaman a la API
+  hooks/        custom hooks (useEquipos, usePrestamos)
+  types/        interfaces TypeScript
+  utils/        utilidades de fechas
+  App.tsx
+db.json         datos de la API (json-server)
+```
+
+## Endpoints utilizados
+
+| Método | Endpoint | Uso |
+|---|---|---|
+| GET | /equipos | Cargar el inventario |
+| GET | /prestamos?devuelto=false | Cargar préstamos activos |
+| POST | /prestamos | Registrar un préstamo |
+| PATCH | /equipos/:id | Cambiar disponibilidad |
+| PATCH | /prestamos/:id | Marcar como devuelto |

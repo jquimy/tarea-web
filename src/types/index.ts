@@ -1,3 +1,5 @@
+export type DatosPrestamo = Pick<Prestamo, "solicitante" | "carne" | "fechaLimite">;
+
 export interface Equipo {
   id: number;
   nombre: string;

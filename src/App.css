@@ -8,3 +8,20 @@ body { font-family: system-ui, sans-serif; margin: 0; background: #f4f5f7; }
 .roja { background: #dc2626; }
 button { cursor: pointer; padding: .4rem .8rem; }
 button:disabled { cursor: not-allowed; opacity: .5; }
+
+.nav { display: flex; gap: .5rem; padding: 1rem 2rem 0; }
+.filtros { display: flex; gap: .75rem; padding: 1rem 2rem 0; }
+.filtros input, .filtros select { padding: .4rem; }
+
+.tabla { margin: 1rem 2rem; border-collapse: collapse; width: calc(100% - 4rem); background: white; }
+.tabla th, .tabla td { padding: .6rem .8rem; text-align: left; border-bottom: 1px solid #e5e7eb; }
+.tabla tr.vencido { background: #fee2e2; color: #991b1b; font-weight: 600; }
+.vacio { padding: 2rem; }
+
+.modal-fondo { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: grid; place-items: center; }
+.modal { background: white; padding: 1.5rem; border-radius: 8px; width: min(420px, 90vw); display: grid; gap: 1rem; }
+.modal h2 { margin: 0; font-size: 1.2rem; }
+.modal label { display: grid; gap: .25rem; font-size: .9rem; }
+.modal input { padding: .45rem; }
+.error { color: #dc2626; font-size: .8rem; }
+.acciones { display: flex; justify-content: flex-end; gap: .5rem; }

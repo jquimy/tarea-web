@@ -1,5 +1,6 @@
-function App() {
-  return <h1>Hola</h1>
-}
+import Inventario from "./pages/Inventario";
+import "./App.css";
 
-export default App
+export default function App() {
+  return <Inventario />;
+}

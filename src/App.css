@@ -1,0 +1,10 @@
+body { font-family: system-ui, sans-serif; margin: 0; background: #f4f5f7; }
+.encabezado { background: #1f2937; color: white; padding: 1rem 2rem; }
+.encabezado h1 { margin: 0 0 .25rem; font-size: 1.5rem; }
+.lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; padding: 2rem; }
+.tarjeta { background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+.etiqueta { display: inline-block; padding: .15rem .6rem; border-radius: 999px; color: white; font-size: .8rem; margin-right: .5rem; }
+.verde { background: #16a34a; }
+.roja { background: #dc2626; }
+button { cursor: pointer; padding: .4rem .8rem; }
+button:disabled { cursor: not-allowed; opacity: .5; }

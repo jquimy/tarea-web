@@ -5,7 +5,7 @@ import { hoyISO, sumarDiasISO } from "../utils/fechas";
 
 interface FormularioPrestamoProps {
   equipo: Equipo;
-  onGuardar: (datos: DatosPrestamo) => void;
+  onGuardar: (datos: DatosPrestamo) => Promise<void>;
   onCancelar: () => void;
 }
 

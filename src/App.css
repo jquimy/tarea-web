@@ -25,3 +25,8 @@ button:disabled { cursor: not-allowed; opacity: .5; }
 .modal input { padding: .45rem; }
 .error { color: #dc2626; font-size: .8rem; }
 .acciones { display: flex; justify-content: flex-end; gap: .5rem; }
+
+.mensaje-error { margin: 2rem; padding: 1rem 1.5rem; background: #fee2e2; color: #991b1b; border-radius: 8px; }
+.mensaje-error p { margin: 0 0 .75rem; }
+.cargando { padding: 2rem; }
+.modal .error-envio { color: #dc2626; margin: 0; }
